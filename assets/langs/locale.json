@@ -1,0 +1,42 @@
+{
+  "hello": {
+    "en": "Hello",
+    "ar": "مرحبا"
+  },
+  "switch_language": {
+    "en": "Switch to Arabic",
+    "ar": "التبديل إلى الإنجليزية"
+  },
+  "app_name_large": {
+    "en": "EQRA EL-KHABAR",
+    "ar": "اقرا الخبر"
+  },
+  "Latest_News": {
+    "en": "Latest News",
+    "ar": "اخر الاخبار"
+  },
+  "Error": {
+    "en": "Error",
+    "ar": "خطأ"
+  },
+  "Something_went_wrong": {
+    "en": "Something went wrong",
+    "ar": "حدث خطأ ما"
+  },
+  "Ok": {
+    "en": "Ok",
+    "ar": "أوافق"
+  },
+  "Search": {
+    "en": "Search",
+    "ar": "أبحث"
+  },
+  "Start_Search": {
+    "en": "Start Searching",
+    "ar": "ابدأ البحث"
+  },
+  "Read_More": {
+    "en": "Read More",
+    "ar": "اقرأ المزيد"
+  }
+}
