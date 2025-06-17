@@ -102,7 +102,11 @@ class HomeScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   IconButton(
-                    icon: Icon(Icons.search),
+                    icon: Image.asset(
+                      'assets/images/search.png',
+                      width: 24,
+                      height: 24,
+                    ),
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(

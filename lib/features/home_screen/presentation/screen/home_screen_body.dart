@@ -73,14 +73,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
                   final article = state.latestNewsList![index];
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 2),
-                    child: NewsTile(
-                      article: article,
-                      // imageUrl: article.urlToImage,
-                      // source: article.source,
-                      // title: article.title,
-                      // author: article.author,
-                      // publishedAt: article.publishedAt,
-                    ),
+                    child: NewsTile(article: article),
                   );
                 }
               },

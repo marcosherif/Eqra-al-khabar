@@ -73,6 +73,7 @@ flutter:
   assets:
     - assets/langs/
     - assets/animations/
+    - assets/images/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
