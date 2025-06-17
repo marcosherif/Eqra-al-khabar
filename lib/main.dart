@@ -1,6 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:eqra_el_khabar/core/app_settings/app_settings_bloc.dart';
 import 'package:eqra_el_khabar/core/app_settings/app_settings_state.dart';
+import 'package:eqra_el_khabar/features/authentication/data/repo_impl/auth_repo_impl.dart';
+import 'package:eqra_el_khabar/features/authentication/presentation/bloc/auth_bloc.dart';
 import 'package:eqra_el_khabar/features/splash_screen/presentation/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +11,7 @@ import 'package:timeago/timeago.dart' as timeago;
 
 import 'config/localization/locale_asset_loader.dart';
 import 'config/themes/themes_data.dart';
+import 'features/authentication/presentation/bloc/auth_event.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,8 +28,16 @@ void main() async {
       path: 'assets/langs',
       fallbackLocale: const Locale('en'),
       assetLoader: LocaleAssetLoader(path: 'assets/langs', file: 'locale.json'),
-      child: BlocProvider(
-        create: (_) => AppSettingsBloc(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => AppSettingsBloc()),
+          BlocProvider(
+            create:
+                (_) =>
+                    AuthBloc(authRepo: AuthRepositoryImpl(Dio()))
+                      ..add(CheckAuthStatus()),
+          ),
+        ],
         child: const MyApp(),
       ),
     ),

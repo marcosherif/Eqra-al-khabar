@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:eqra_el_khabar/features/authentication/domain/entities/user.dart';
 import 'package:eqra_el_khabar/features/home_screen/domain/repo/news_repo.dart';
 import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_bloc.dart';
 import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_event.dart';
@@ -13,7 +14,9 @@ import '../../../../core/app_settings/app_settings_bloc.dart';
 import '../../../../core/app_settings/app_settings_event.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.user});
+
+  final User user;
 
   @override
   Widget build(BuildContext context) {

@@ -38,5 +38,21 @@
   "Read_More": {
     "en": "Read More",
     "ar": "اقرأ المزيد"
+  },
+  "login": {
+    "en": "login",
+    "ar": "تسجيل دخول"
+  },
+  "login_failed": {
+    "en": "login failed",
+    "ar": "فشل تسجيل دخول"
+  },
+  "username": {
+    "en": "username",
+    "ar": "اسم المستخدم"
+  },
+  "password": {
+    "en": "password",
+    "ar": "كلمة المرور"
   }
 }
