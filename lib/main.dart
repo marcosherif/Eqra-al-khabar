@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:eqra_el_khabar/core/app_settings/app_settings_bloc.dart';
 import 'package:eqra_el_khabar/core/app_settings/app_settings_state.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/screen/home_screen.dart';
 import 'package:eqra_el_khabar/features/splash_screen/presentation/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

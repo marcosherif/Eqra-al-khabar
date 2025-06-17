@@ -7,6 +7,7 @@ import 'package:eqra_el_khabar/features/search_screen/presentation/bloc/search_s
 import 'package:eqra_el_khabar/features/search_screen/presentation/screen/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../../core/app_settings/app_settings_bloc.dart';
 import '../../../../core/app_settings/app_settings_event.dart';
@@ -34,9 +35,19 @@ class HomeScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'app_name_large'.tr(),
-                  style: Theme.of(context).textTheme.headlineSmall,
+                Row(
+                  children: [
+                    Lottie.asset(
+                      'assets/animations/megaphone_animation.json',
+                      width: 55,
+                      height: 55,
+                      fit: BoxFit.contain,
+                    ),
+                    Text(
+                      'app_name_large'.tr(),
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                  ],
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
