@@ -6,7 +6,7 @@ import 'app_settings_state.dart';
 
 class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
   AppSettingsBloc()
-    : super(const AppSettingsState(themeMode: ThemeMode.light)) {
+    : super(const AppSettingsState(themeMode: ThemeMode.system)) {
     on<ToggleTheme>((event, emit) {
       final newTheme =
           state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;

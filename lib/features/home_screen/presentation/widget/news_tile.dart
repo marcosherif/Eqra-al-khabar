@@ -43,7 +43,7 @@ class NewsTile extends StatelessWidget {
                     article.urlToImage ?? '',
                     width: 100,
                     height: 100,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     errorBuilder:
                         (context, error, stackTrace) => Container(
                           color: Colors.grey[300],
