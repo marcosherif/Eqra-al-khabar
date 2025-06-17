@@ -5,14 +5,17 @@ final ThemeData lightMode = ThemeData(
   brightness: Brightness.light,
   primaryColor: Color(0xffc1121f),
   cardColor: Colors.white,
-  scaffoldBackgroundColor: Colors.blueGrey.shade50,
+  scaffoldBackgroundColor: Color(0xfff0f4f8),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       foregroundColor: Colors.white, // Text/icon color
       backgroundColor: Color(0xffc1121f), // Button background color
     ),
   ),
-  appBarTheme: AppBarTheme(backgroundColor: Colors.blueGrey.shade50),
+  appBarTheme: AppBarTheme(
+    backgroundColor: Color(0xfff0f4f8),
+    elevation: 0,
+  ),
   textTheme: TextTheme(
     bodyMedium: TextStyle(color: Color(0xff023047)),
     bodyLarge: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -36,7 +39,7 @@ final ThemeData darkMode = ThemeData(
       backgroundColor: Color(0xff0096c7), // Button background color
     ),
   ),
-  appBarTheme: AppBarTheme(backgroundColor: Color(0xff00111C)),
+  appBarTheme: AppBarTheme(backgroundColor: Color(0xff00111C), elevation: 0),
   textTheme: TextTheme(
     bodyMedium: TextStyle(color: Colors.white),
     bodyLarge: TextStyle(color: Colors.white),

@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:eqra_el_khabar/core/common_widgets/search_loader.dart';
 import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_bloc.dart';
 import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_event.dart';
 import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_state.dart';
@@ -88,12 +89,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         } else if (state.status == HomeScreenStatus.error) {
           return Center(child: Text('Something_went_wrong'.tr()));
         } else {
-          return Center(
-            child: CircularProgressIndicator(
-              strokeWidth: 4,
-              color: Theme.of(context).primaryColor,
-            ),
-          );
+          return SearchLoader();
         }
       },
     );
