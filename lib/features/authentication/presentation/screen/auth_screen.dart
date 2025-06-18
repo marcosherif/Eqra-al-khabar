@@ -51,6 +51,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 40),
                   TextField(
+                    onChanged: (text) {
+                      context.read<AuthBloc>().add(ClearError());
+                    },
                     controller: _usernameController,
                     decoration: InputDecoration(
                       hintText: 'username'.tr(),
@@ -69,6 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 10),
                   TextField(
                     controller: _passwordController,
+                    onChanged: (text) {
+                      context.read<AuthBloc>().add(ClearError());
+                    },
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: 'password'.tr(),
@@ -84,6 +90,17 @@ class _LoginPageState extends State<LoginPage> {
                       fillColor: Theme.of(context).cardColor,
                     ),
                   ),
+                  if (state.status == AuthStatus.error &&
+                      state.error == 'Invalid credentials') ...[
+                    const SizedBox(height: 4),
+                    Text(
+                      'Invalid_Credentials'.tr(),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyMedium?.copyWith(color: Colors.red),
+                    ),
+                    const SizedBox(height: 4),
+                  ],
                   const SizedBox(height: 20),
                   if (state.status == AuthStatus.loading)
                     CircularProgressIndicator(

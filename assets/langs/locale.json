@@ -54,5 +54,9 @@
   "password": {
     "en": "password",
     "ar": "كلمة المرور"
+  },
+  "Invalid_Credentials": {
+    "en": "Invalid username or password",
+    "ar": "خطأ في اسم المستخدم او كلمة المرور"
   }
 }
