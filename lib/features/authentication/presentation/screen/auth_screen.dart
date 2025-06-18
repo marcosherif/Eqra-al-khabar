@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:eqra_el_khabar/features/home_screen/presentation/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
@@ -18,16 +19,10 @@ class _LoginPageState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void _login() {
-    context.read<AuthBloc>().add(
-      LoginRequested(_usernameController.text, _passwordController.text),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
+      appBar: AppBar(title: Center(child: Text('login').tr())),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.authenticated && state.user != null) {
@@ -42,37 +37,75 @@ class _LoginPageState extends State<LoginPage> {
           }
         },
         builder: (context, state) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextField(
-                  controller: _usernameController,
-                  decoration: InputDecoration(labelText: 'Username'.tr()),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(labelText: 'Password'.tr()),
-                ),
-                const SizedBox(height: 20),
-                if (state.status == AuthStatus.loading)
-                  const CircularProgressIndicator()
-                else
-                  ElevatedButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(
-                        LoginRequested(
-                          _usernameController.text.trim(),
-                          _passwordController.text.trim(),
-                        ),
-                      );
-                    },
-                    child: const Text('Login'),
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  SizedBox(height: 80),
+                  Lottie.asset(
+                    'assets/animations/login_animation.json',
+                    width: 200,
+                    height: 200,
+                    fit: BoxFit.contain,
                   ),
-              ],
+                  SizedBox(height: 40),
+                  TextField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      hintText: 'username'.tr(),
+                      prefixIcon: Icon(Icons.account_circle_rounded),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Theme.of(context).cardColor,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  TextField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: 'password'.tr(),
+                      prefixIcon: Icon(Icons.password),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30),
+                        borderSide: BorderSide.none,
+                      ),
+                      filled: true,
+                      fillColor: Theme.of(context).cardColor,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  if (state.status == AuthStatus.loading)
+                    CircularProgressIndicator(
+                      color: Theme.of(context).primaryColor,
+                    )
+                  else
+                    SizedBox(
+                      width: 150,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<AuthBloc>().add(
+                            LoginRequested(
+                              _usernameController.text.trim(),
+                              _passwordController.text.trim(),
+                            ),
+                          );
+                        },
+                        child: Text('login'.tr()),
+                      ),
+                    ),
+                ],
+              ),
             ),
           );
         },

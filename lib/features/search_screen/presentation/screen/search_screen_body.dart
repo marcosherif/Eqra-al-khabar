@@ -75,11 +75,6 @@ class _SearchScreenBodyState extends State<SearchScreenBody> {
                     padding: const EdgeInsets.symmetric(vertical: 2),
                     child: NewsTile(
                       article: article,
-                      // imageUrl: article.urlToImage,
-                      // source: article.source,
-                      // title: article.title,
-                      // author: article.author,
-                      // publishedAt: article.publishedAt,
                     ),
                   );
                 }
