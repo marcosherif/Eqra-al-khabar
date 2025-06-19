@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../../../core/app_settings/app_settings_bloc.dart';
+import '../../../../core/app_settings/app_settings_event.dart';
+import '../../../../core/widgets/day_night_toggle.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
@@ -22,7 +25,47 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text('login').tr())),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextButton(
+              onPressed: () {
+                Locale locale;
+                if (context.locale == Locale('en')) {
+                  locale = Locale('ar');
+                } else {
+                  locale = Locale('en');
+                }
+                context.setLocale(locale);
+              },
+              child: Text(
+                context.locale == Locale('en') ? 'ع' : 'Eng',
+                style: Theme.of(
+                  context,
+                ).textTheme.titleSmall?.copyWith(fontSize: 18),
+              ),
+            ),
+            Text('login').tr(),
+            ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: 100, maxWidth: 100),
+              child: DayNightSwitchLocal(
+                value:
+                    context.read<AppSettingsBloc>().state.themeMode ==
+                    ThemeMode.dark,
+                scale: 0.4,
+                onChanged: (val) {
+                  setState(() {
+                    context.read<AppSettingsBloc>().add(ToggleTheme());
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.authenticated && state.user != null) {

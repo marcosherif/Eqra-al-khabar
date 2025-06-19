@@ -12,10 +12,10 @@ final ThemeData lightMode = ThemeData(
       backgroundColor: Color(0xffc1121f), // Button background color
     ),
   ),
-  appBarTheme: AppBarTheme(
-    backgroundColor: Color(0xfff0f4f8),
-    elevation: 0,
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(foregroundColor: Color(0xffc1121f)),
   ),
+  appBarTheme: AppBarTheme(backgroundColor: Color(0xfff0f4f8), elevation: 0),
   textTheme: TextTheme(
     bodyMedium: TextStyle(color: Color(0xff023047)),
     bodyLarge: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -38,6 +38,9 @@ final ThemeData darkMode = ThemeData(
       foregroundColor: Colors.white, // Text/icon color
       backgroundColor: Color(0xff0096c7), // Button background color
     ),
+  ),
+  textButtonTheme: TextButtonThemeData(
+    style: TextButton.styleFrom(foregroundColor: Color(0xffc1121f)),
   ),
   appBarTheme: AppBarTheme(backgroundColor: Color(0xff00111C), elevation: 0),
   textTheme: TextTheme(
