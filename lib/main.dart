@@ -7,6 +7,11 @@ import 'package:eqra_el_khabar/features/authentication/presentation/bloc/auth_bl
 import 'package:eqra_el_khabar/features/splash_screen/presentation/screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+// import 'package:path_provider/path_provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import 'config/localization/locale_asset_loader.dart';
@@ -21,6 +26,14 @@ void main() async {
 
   //initialize arabic messages for timeago package
   timeago.setLocaleMessages('ar', timeago.ArMessages());
+
+  //initialize hydrated bloc
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: HydratedStorageDirectory(
+      (await getApplicationDocumentsDirectory()).path,
+    ),
+  );
+
 
   runApp(
     EasyLocalization(

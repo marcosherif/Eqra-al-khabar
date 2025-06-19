@@ -1,5 +1,4 @@
 import 'package:eqra_el_khabar/features/news_details/presentation/screen/news_details_webview_screen.dart';
-import 'package:eqra_el_khabar/features/news_details/presentation/widget/web_view_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:easy_localization/easy_localization.dart';
