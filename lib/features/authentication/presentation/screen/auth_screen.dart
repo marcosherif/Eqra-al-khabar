@@ -49,19 +49,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Text('login').tr(),
-            ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: 100, maxWidth: 100),
-              child: DayNightSwitchLocal(
-                value:
-                    context.read<AppSettingsBloc>().state.themeMode ==
-                    ThemeMode.dark,
-                scale: 0.4,
-                onChanged: (val) {
-                  setState(() {
-                    context.read<AppSettingsBloc>().add(ToggleTheme());
-                  });
-                },
-              ),
+            DayNightSwitchLocal(
+              value:
+                  context.read<AppSettingsBloc>().state.themeMode ==
+                  ThemeMode.dark,
+              scale: 0.4,
+              onChanged: (val) {
+                setState(() {
+                  context.read<AppSettingsBloc>().add(ToggleTheme());
+                });
+              },
             ),
           ],
         ),

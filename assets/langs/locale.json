@@ -58,5 +58,17 @@
   "Invalid_Credentials": {
     "en": "Invalid username or password",
     "ar": "خطأ في اسم المستخدم او كلمة المرور"
+  },
+  "Settings": {
+    "en": "Settings",
+    "ar": "الاعدادات"
+  },
+  "application_theme": {
+    "en": "Choose theme:",
+    "ar": "اختر وضع الالوان:"
+  },
+  "application_language": {
+    "en": "Choose language:",
+    "ar": "اختر اللغة:"
   }
 }

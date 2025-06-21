@@ -67,7 +67,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> _onClearError(ClearError event, Emitter<AuthState> emit) async {
-    emit(state.copyWith(status: AuthStatus.authenticated, error: null));
+    emit(state.copyWith(status: AuthStatus.unauthenticated, error: null));
   }
 
   Future<void> _onLogoutRequested(
