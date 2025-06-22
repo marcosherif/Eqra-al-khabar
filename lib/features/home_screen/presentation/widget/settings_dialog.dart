@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/app_settings/app_settings_bloc.dart';
 import '../../../../core/app_settings/app_settings_event.dart';
-import '../../../../core/widgets/day_night_toggle.dart';
+import '../../../../core/common_widgets/day_night_toggle.dart';
 
 class SettingsDialog extends StatefulWidget {
   const SettingsDialog({super.key});

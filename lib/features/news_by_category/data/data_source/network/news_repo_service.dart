@@ -1,6 +1,7 @@
 import 'package:eqra_el_khabar/core/network/network_response.dart';
 import 'package:eqra_el_khabar/core/network/network_service.dart';
-import 'package:eqra_el_khabar/features/home_screen/domain/entities/articles_list.dart';
+
+import '../../../domain/entities/articles_list.dart';
 
 class NewsService {
   final NetworkService service;

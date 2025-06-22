@@ -1,12 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:eqra_el_khabar/core/common_widgets/search_loader.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_bloc.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_event.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_state.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/widget/news_tile.dart';
+import 'package:eqra_el_khabar/features/news_by_category/presentation/widget/news_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import '../bloc/news_by_category_screen_bloc.dart';
+import '../bloc/news_by_category_screen_event.dart';
+import '../bloc/news_by_category_screen_state.dart';
 import '../widget/bottom_loader.dart';
 
 class HomeScreenBody extends StatefulWidget {
@@ -27,9 +26,9 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeScreenBloc, HomeScreenState>(
+    return BlocConsumer<NewsByCategoryScreenBloc, NewsByCategoryScreenState>(
       listener: (context, state) {
-        if (state.status == HomeScreenStatus.error) {
+        if (state.status == NewsByCategoryScreenStatus.error) {
           showDialog(
             context: context,
             builder:
@@ -52,7 +51,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
         }
       },
       builder: (context, state) {
-        if (state.status == HomeScreenStatus.loaded) {
+        if (state.status == NewsByCategoryScreenStatus.loaded) {
           return Expanded(
             child: ListView.builder(
               controller: _scrollController,
@@ -79,7 +78,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
               },
             ),
           );
-        } else if (state.status == HomeScreenStatus.error) {
+        } else if (state.status == NewsByCategoryScreenStatus.error) {
           return Center(child: Text('Something_went_wrong'.tr()));
         } else {
           return SearchLoader();
@@ -96,7 +95,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
 
   void _onScroll() {
     if (_didScrollAfterEndOfScreen) {
-      context.read<HomeScreenBloc>().add(
+      context.read<NewsByCategoryScreenBloc>().add(
         GetMoreNews(language: context.locale.languageCode),
       );
     }

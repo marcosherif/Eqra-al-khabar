@@ -3,10 +3,11 @@ import 'package:eqra_el_khabar/features/search_screen/presentation/bloc/search_s
 import 'package:eqra_el_khabar/features/search_screen/presentation/bloc/search_screen_state.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:eqra_el_khabar/core/network/network_response.dart';
-import 'package:eqra_el_khabar/features/home_screen/data/models/article.dart';
-import 'package:eqra_el_khabar/features/home_screen/domain/entities/articles_list.dart';
-import 'package:eqra_el_khabar/features/home_screen/domain/repo/news_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../news_by_category/data/models/article.dart';
+import '../../../news_by_category/domain/entities/articles_list.dart';
+import '../../../news_by_category/domain/repo/news_repo.dart';
 
 class SearchScreenBloc extends Bloc<SearchScreenEvent, SearchScreenState> {
   final NewsRepo newsRepo;

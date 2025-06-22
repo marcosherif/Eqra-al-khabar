@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../../home_screen/data/models/article.dart';
+import '../../../news_by_category/data/models/article.dart';
 
 enum SearchScreenStatus { initial, loading, loaded, error }
 
@@ -40,13 +40,12 @@ class SearchScreenState extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [
-        status,
-        latestNewsList,
-        newsPageIndex,
-        hasReachedMax,
-        searchString,
-        error,
-      ];
+  List<Object?> get props => [
+    status,
+    latestNewsList,
+    newsPageIndex,
+    hasReachedMax,
+    searchString,
+    error,
+  ];
 }

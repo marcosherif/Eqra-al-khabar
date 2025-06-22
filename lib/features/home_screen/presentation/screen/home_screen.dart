@@ -4,10 +4,7 @@ import 'package:eqra_el_khabar/features/authentication/presentation/bloc/auth_bl
 import 'package:eqra_el_khabar/features/authentication/presentation/bloc/auth_event.dart';
 import 'package:eqra_el_khabar/features/authentication/presentation/bloc/auth_state.dart';
 import 'package:eqra_el_khabar/features/authentication/presentation/screen/auth_screen.dart';
-import 'package:eqra_el_khabar/features/home_screen/domain/repo/news_repo.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_bloc.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_event.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/screen/home_screen_body.dart';
+import 'package:eqra_el_khabar/features/home_screen/presentation/widget/categories_grid.dart';
 import 'package:eqra_el_khabar/features/home_screen/presentation/widget/settings_dialog.dart';
 import 'package:eqra_el_khabar/features/search_screen/presentation/bloc/search_screen_bloc.dart';
 import 'package:eqra_el_khabar/features/search_screen/presentation/screen/search_screen.dart';
@@ -15,9 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../../core/app_settings/app_settings_bloc.dart';
-import '../../../../core/app_settings/app_settings_event.dart';
-import '../../../../core/widgets/day_night_toggle.dart';
+import '../../../news_by_category/domain/repo/news_repo.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key, required this.user});
@@ -96,53 +91,45 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-        body: BlocProvider(
-          create:
-              (newContext) =>
-                  HomeScreenBloc(newsRepo: NewsRepo.initiate())..add(
-                    GetLatestNews(
-                      language: context.locale.languageCode,
-                      typeOfNews: 'tech',
-                    ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Latest_News'.tr(),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyLarge?.copyWith(fontSize: 18),
                   ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Latest_News'.tr(),
-                      style: Theme.of(context).textTheme.bodyLarge,
+                  IconButton(
+                    icon: Image.asset(
+                      'assets/images/search.png',
+                      width: 24,
+                      height: 24,
                     ),
-                    IconButton(
-                      icon: Image.asset(
-                        'assets/images/search.png',
-                        width: 24,
-                        height: 24,
-                      ),
-                      onPressed: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder:
-                                (context) => BlocProvider(
-                                  create:
-                                      (context) => SearchScreenBloc(
-                                        newsRepo: NewsRepo.initiate(),
-                                      ),
-                                  child: SearchScreen(),
-                                ),
-                          ),
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder:
+                              (context) => BlocProvider(
+                                create:
+                                    (context) => SearchScreenBloc(
+                                      newsRepo: NewsRepo.initiate(),
+                                    ),
+                                child: SearchScreen(),
+                              ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
               ),
-              HomeScreenBody(),
-            ],
-          ),
+            ),
+            CategoriesGrid(),
+          ],
         ),
       ),
     );

@@ -5,8 +5,8 @@ import 'package:eqra_el_khabar/features/search_screen/presentation/bloc/search_s
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../home_screen/presentation/widget/bottom_loader.dart';
-import '../../../home_screen/presentation/widget/news_tile.dart';
+import '../../../news_by_category/presentation/widget/bottom_loader.dart';
+import '../../../news_by_category/presentation/widget/news_tile.dart';
 import '../bloc/search_screen_bloc.dart';
 
 class SearchScreenBody extends StatefulWidget {

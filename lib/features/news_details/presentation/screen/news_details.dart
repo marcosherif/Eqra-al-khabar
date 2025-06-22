@@ -2,7 +2,8 @@ import 'package:eqra_el_khabar/features/news_details/presentation/screen/news_de
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:easy_localization/easy_localization.dart';
-import 'package:eqra_el_khabar/features/home_screen/data/models/article.dart';
+
+import '../../../news_by_category/data/models/article.dart';
 
 class NewsDetailScreen extends StatelessWidget {
   final Article article;

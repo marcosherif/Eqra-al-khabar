@@ -70,5 +70,29 @@
   "application_language": {
     "en": "Choose language:",
     "ar": "اختر اللغة:"
+  },
+  "economy": {
+    "en": "economy",
+    "ar": "اقتصاد"
+  },
+  "entertainment": {
+    "en": "entertainment",
+    "ar": "ترفيه"
+  },
+  "health": {
+    "en": "health",
+    "ar": "صحة"
+  },
+  "science": {
+    "en": "science",
+    "ar": "علوم"
+  },
+  "sports": {
+    "en": "sports",
+    "ar": "رياضة"
+  },
+  "technology": {
+    "en": "technology",
+    "ar": "تكنولوجيا"
   }
 }

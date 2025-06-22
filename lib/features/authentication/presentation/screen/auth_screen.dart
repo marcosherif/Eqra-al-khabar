@@ -6,7 +6,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../../../core/app_settings/app_settings_bloc.dart';
 import '../../../../core/app_settings/app_settings_event.dart';
-import '../../../../core/widgets/day_night_toggle.dart';
+import '../../../../core/common_widgets/day_night_toggle.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';

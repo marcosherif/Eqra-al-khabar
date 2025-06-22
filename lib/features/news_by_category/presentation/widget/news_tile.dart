@@ -1,10 +1,11 @@
 import 'package:eqra_el_khabar/core/util/string_truncate.dart';
-import 'package:eqra_el_khabar/features/home_screen/data/models/article.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:uuid/uuid.dart';
 
 import '../../../news_details/presentation/screen/news_details.dart';
+import '../../data/models/article.dart';
 
 class NewsTile extends StatelessWidget {
   final Article article;
@@ -22,7 +23,7 @@ class NewsTile extends StatelessWidget {
             builder:
                 (_) => NewsDetailScreen(
                   article: article,
-                  heroTag: article.urlToImage ?? article.title ?? 'hero-tag',
+                  heroTag: Uuid().v4(),
                 ),
           ),
         );

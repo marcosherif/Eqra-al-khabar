@@ -1,18 +1,19 @@
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:eqra_el_khabar/core/network/network_response.dart';
-import 'package:eqra_el_khabar/features/home_screen/data/models/article.dart';
-import 'package:eqra_el_khabar/features/home_screen/domain/entities/articles_list.dart';
-import 'package:eqra_el_khabar/features/home_screen/domain/repo/news_repo.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_event.dart';
-import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/home_screen_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
+import '../../data/models/article.dart';
+import '../../domain/entities/articles_list.dart';
+import '../../domain/repo/news_repo.dart';
+import 'news_by_category_screen_event.dart';
+import 'news_by_category_screen_state.dart';
+
+class NewsByCategoryScreenBloc extends Bloc<NewsByCategoryScreenEvent, NewsByCategoryScreenState> {
   final NewsRepo newsRepo;
 
-  HomeScreenBloc({required this.newsRepo})
-    : super(HomeScreenState(status: HomeScreenStatus.initial)) {
+  NewsByCategoryScreenBloc({required this.newsRepo})
+    : super(NewsByCategoryScreenState(status: NewsByCategoryScreenStatus.initial)) {
     //initialize transformer for loading more news
     EventTransformer<E> throttleDroppable<E>(Duration duration) {
       return (events, mapper) {
@@ -30,9 +31,9 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
 
   Future<void> _onGetLatestNews(
     GetLatestNews event,
-    Emitter<HomeScreenState> emit,
+    Emitter<NewsByCategoryScreenState> emit,
   ) async {
-    emit(state.copyWith(status: HomeScreenStatus.loading));
+    emit(state.copyWith(status: NewsByCategoryScreenStatus.loading));
 
     NetworkResponse response = await newsRepo.getLatestNews(
       pageIndex: 1,
@@ -42,7 +43,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     if (response.statusCode != '200') {
       emit(
         state.copyWith(
-          status: HomeScreenStatus.error,
+          status: NewsByCategoryScreenStatus.error,
           error: response.statusMessage,
         ),
       );
@@ -51,7 +52,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       final List<Article> articles = articlesList.articles;
       emit(
         state.copyWith(
-          status: HomeScreenStatus.loaded,
+          status: NewsByCategoryScreenStatus.loaded,
           latestNewsList: articles,
           newsPageIndex: 2,
           hasReachedMax: articles.length >= articlesList.totalResults,
@@ -62,7 +63,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
 
   Future<void> _onGetMoreNews(
     GetMoreNews event,
-    Emitter<HomeScreenState> emit,
+    Emitter<NewsByCategoryScreenState> emit,
   ) async {
     if (state.hasReachedMax ?? false) return;
 
@@ -75,7 +76,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
     if (response.statusCode != '200') {
       emit(
         state.copyWith(
-          status: HomeScreenStatus.error,
+          status: NewsByCategoryScreenStatus.error,
           error: response.statusMessage,
         ),
       );
@@ -88,7 +89,7 @@ class HomeScreenBloc extends Bloc<HomeScreenEvent, HomeScreenState> {
       ];
       emit(
         state.copyWith(
-          status: HomeScreenStatus.loaded,
+          status: NewsByCategoryScreenStatus.loaded,
           latestNewsList: appendedArticlesList,
           newsPageIndex: (state.newsPageIndex ?? 1) + 1,
           hasReachedMax:

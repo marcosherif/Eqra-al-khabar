@@ -1,13 +1,13 @@
-abstract class HomeScreenEvent {}
+abstract class NewsByCategoryScreenEvent {}
 
-class GetLatestNews extends HomeScreenEvent {
+class GetLatestNews extends NewsByCategoryScreenEvent {
   String? language;
   String? typeOfNews;
 
   GetLatestNews({this.language = 'en', this.typeOfNews = 'tech'});
 }
 
-class GetMoreNews extends HomeScreenEvent {
+class GetMoreNews extends NewsByCategoryScreenEvent {
   String? language;
   String? typeOfNews;
 
