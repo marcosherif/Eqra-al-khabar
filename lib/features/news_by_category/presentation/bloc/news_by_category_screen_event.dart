@@ -1,15 +1,15 @@
 abstract class NewsByCategoryScreenEvent {}
 
-class GetLatestNews extends NewsByCategoryScreenEvent {
+class GetLatestNewsByCategory extends NewsByCategoryScreenEvent {
   String? language;
   String? typeOfNews;
 
-  GetLatestNews({this.language = 'en', this.typeOfNews = 'tech'});
+  GetLatestNewsByCategory({this.language = 'en', this.typeOfNews = 'tech'});
 }
 
-class GetMoreNews extends NewsByCategoryScreenEvent {
+class GetMoreNewsFromCategory extends NewsByCategoryScreenEvent {
   String? language;
   String? typeOfNews;
 
-  GetMoreNews({this.language = 'en', this.typeOfNews = 'tech'});
+  GetMoreNewsFromCategory({this.language = 'en', this.typeOfNews = 'tech'});
 }

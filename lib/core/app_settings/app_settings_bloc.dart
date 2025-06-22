@@ -1,5 +1,4 @@
 import 'package:eqra_el_khabar/core/app_settings/app_settings_event.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 

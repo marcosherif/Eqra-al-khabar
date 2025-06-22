@@ -22,18 +22,19 @@ class NewsByCategoryScreen extends StatelessWidget {
               ? category.toUpperCase()
               : category.tr(),
         ),
-        leading: BackButton(color: Colors.black),
+        leading: BackButton(),
         elevation: 0,
         centerTitle: true,
       ),
       body: BlocProvider(
         create:
-            (newContext) => NewsByCategoryScreenBloc(newsRepo: NewsRepo.initiate())..add(
-              GetLatestNews(
-                language: context.locale.languageCode,
-                typeOfNews: category,
-              ),
-            ),
+            (newContext) =>
+                NewsByCategoryScreenBloc(newsRepo: NewsRepo.initiate())..add(
+                  GetLatestNewsByCategory(
+                    language: context.locale.languageCode,
+                    typeOfNews: category,
+                  ),
+                ),
         child: Column(
           children: [
             Align(

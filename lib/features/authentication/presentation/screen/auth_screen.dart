@@ -7,6 +7,9 @@ import 'package:lottie/lottie.dart';
 import '../../../../core/app_settings/app_settings_bloc.dart';
 import '../../../../core/app_settings/app_settings_event.dart';
 import '../../../../core/common_widgets/day_night_toggle.dart';
+import '../../../home_screen/presentation/bloc/latest_news_bloc.dart';
+import '../../../home_screen/presentation/bloc/latest_news_event.dart';
+import '../../../news_by_category/domain/repo/news_repo.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
 import '../bloc/auth_state.dart';
@@ -68,7 +71,20 @@ class _LoginPageState extends State<LoginPage> {
           if (state.status == AuthStatus.authenticated && state.user != null) {
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (_) => HomeScreen(user: state.user!)),
+              MaterialPageRoute(
+                builder:
+                    (_) => BlocProvider(
+                      create:
+                          (newContext) =>
+                              LatestNewsBloc(newsRepo: NewsRepo.initiate())
+                                ..add(
+                                  GetLatestNews(
+                                    language: context.locale.languageCode,
+                                  ),
+                                ),
+                      child: HomeScreen(user: state.user!),
+                    ),
+              ),
             );
           } else if (state.status == AuthStatus.error) {
             ScaffoldMessenger.of(context).showSnackBar(

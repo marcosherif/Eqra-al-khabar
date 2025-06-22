@@ -9,11 +9,14 @@ import '../../domain/repo/news_repo.dart';
 import 'news_by_category_screen_event.dart';
 import 'news_by_category_screen_state.dart';
 
-class NewsByCategoryScreenBloc extends Bloc<NewsByCategoryScreenEvent, NewsByCategoryScreenState> {
+class NewsByCategoryScreenBloc
+    extends Bloc<NewsByCategoryScreenEvent, NewsByCategoryScreenState> {
   final NewsRepo newsRepo;
 
   NewsByCategoryScreenBloc({required this.newsRepo})
-    : super(NewsByCategoryScreenState(status: NewsByCategoryScreenStatus.initial)) {
+    : super(
+        NewsByCategoryScreenState(status: NewsByCategoryScreenStatus.initial),
+      ) {
     //initialize transformer for loading more news
     EventTransformer<E> throttleDroppable<E>(Duration duration) {
       return (events, mapper) {
@@ -21,16 +24,16 @@ class NewsByCategoryScreenBloc extends Bloc<NewsByCategoryScreenEvent, NewsByCat
       };
     }
 
-    on<GetLatestNews>(_onGetLatestNews);
+    on<GetLatestNewsByCategory>(_onGetLatestNews);
 
-    on<GetMoreNews>(
+    on<GetMoreNewsFromCategory>(
       _onGetMoreNews,
       transformer: throttleDroppable(Duration(milliseconds: 300)),
     );
   }
 
   Future<void> _onGetLatestNews(
-    GetLatestNews event,
+    GetLatestNewsByCategory event,
     Emitter<NewsByCategoryScreenState> emit,
   ) async {
     emit(state.copyWith(status: NewsByCategoryScreenStatus.loading));
@@ -62,7 +65,7 @@ class NewsByCategoryScreenBloc extends Bloc<NewsByCategoryScreenEvent, NewsByCat
   }
 
   Future<void> _onGetMoreNews(
-    GetMoreNews event,
+    GetMoreNewsFromCategory event,
     Emitter<NewsByCategoryScreenState> emit,
   ) async {
     if (state.hasReachedMax ?? false) return;

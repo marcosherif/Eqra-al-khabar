@@ -7,7 +7,10 @@ import 'package:lottie/lottie.dart';
 import '../../../authentication/presentation/bloc/auth_bloc.dart';
 import '../../../authentication/presentation/bloc/auth_state.dart';
 import '../../../authentication/presentation/screen/auth_screen.dart';
+import '../../../home_screen/presentation/bloc/latest_news_bloc.dart';
+import '../../../home_screen/presentation/bloc/latest_news_event.dart';
 import '../../../home_screen/presentation/screen/home_screen.dart';
+import '../../../news_by_category/domain/repo/news_repo.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -26,7 +29,18 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(const Duration(seconds: 2), () {
       if (state.status == AuthStatus.authenticated && state.user != null) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => HomeScreen(user: state.user!)),
+          MaterialPageRoute(
+            builder:
+                (_) => BlocProvider(
+                  create:
+                      (newContext) => LatestNewsBloc(
+                        newsRepo: NewsRepo.initiate(),
+                      )..add(
+                        GetLatestNews(language: context.locale.languageCode),
+                      ),
+                  child: HomeScreen(user: state.user!),
+                ),
+          ),
         );
       } else {
         Navigator.of(

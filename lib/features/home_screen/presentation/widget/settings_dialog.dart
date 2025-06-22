@@ -1,4 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/latest_news_bloc.dart';
+import 'package:eqra_el_khabar/features/home_screen/presentation/bloc/latest_news_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,7 +9,9 @@ import '../../../../core/app_settings/app_settings_event.dart';
 import '../../../../core/common_widgets/day_night_toggle.dart';
 
 class SettingsDialog extends StatefulWidget {
-  const SettingsDialog({super.key});
+  SettingsDialog({super.key, required this.screenContext});
+
+  BuildContext screenContext;
 
   @override
   State<SettingsDialog> createState() => _SettingsDialogState();
@@ -79,6 +83,9 @@ class _SettingsDialogState extends State<SettingsDialog> {
                           locale = Locale('en');
                         }
                         context.setLocale(locale);
+                        widget.screenContext.read<LatestNewsBloc>().add(
+                          GetLatestNews(language: context.locale.languageCode),
+                        );
                       },
                       child: Text(
                         context.locale == Locale('en') ? 'ع' : 'Eng',

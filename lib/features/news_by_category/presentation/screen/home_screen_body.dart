@@ -96,7 +96,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   void _onScroll() {
     if (_didScrollAfterEndOfScreen) {
       context.read<NewsByCategoryScreenBloc>().add(
-        GetMoreNews(language: context.locale.languageCode),
+        GetMoreNewsFromCategory(language: context.locale.languageCode),
       );
     }
   }
