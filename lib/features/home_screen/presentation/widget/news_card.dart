@@ -92,10 +92,10 @@ class NewsCard extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                         ),
                         const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        Stack(
                           children: [
-                            Expanded(
+                            Align(
+                              alignment: Alignment.bottomLeft,
                               child: Row(
                                 children: [
                                   CircleAvatar(
@@ -121,11 +121,17 @@ class NewsCard extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            Text(
-                              timeAgo,
-                              style: TextStyle(
-                                color: Colors.white60,
-                                fontSize: 12,
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical:  6.0),
+                                child: Text(
+                                  timeAgo,
+                                  style: TextStyle(
+                                    color: Colors.white60,
+                                    fontSize: 12,
+                                  ),
+                                ),
                               ),
                             ),
                           ],

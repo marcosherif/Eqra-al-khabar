@@ -17,7 +17,7 @@ class NewsService {
       path: 'everything',
       queryParameters: {
         'q': typeOfNews,
-        'pageSize': 10,
+        'pageSize': 20,
         'page': pageIndex,
         'sortBy': 'publishedAt',
         'language': language,
