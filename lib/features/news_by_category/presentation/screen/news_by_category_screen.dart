@@ -38,7 +38,10 @@ class NewsByCategoryScreen extends StatelessWidget {
         child: Column(
           children: [
             Align(
-              alignment: Alignment.centerLeft,
+              alignment:
+                  context.locale.languageCode == 'ar'
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Text(
