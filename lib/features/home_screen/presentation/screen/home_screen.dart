@@ -99,85 +99,83 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         body: SingleChildScrollView(
-          child: Expanded(
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Latest_News'.tr(),
-                        style: Theme.of(
-                          context,
-                        ).textTheme.bodyLarge?.copyWith(fontSize: 18),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Latest_News'.tr(),
+                      style: Theme.of(
+                        context,
+                      ).textTheme.bodyLarge?.copyWith(fontSize: 18),
+                    ),
+                    IconButton(
+                      icon: Image.asset(
+                        'assets/images/search.png',
+                        width: 24,
+                        height: 24,
                       ),
-                      IconButton(
-                        icon: Image.asset(
-                          'assets/images/search.png',
-                          width: 24,
-                          height: 24,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder:
-                                  (context) => BlocProvider(
-                                    create:
-                                        (context) => SearchScreenBloc(
-                                          newsRepo: NewsRepo.initiate(),
-                                        ),
-                                    child: SearchScreen(),
-                                  ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: BlocBuilder<LatestNewsBloc, LatestNewsState>(
-                    builder: (context, state) {
-                      if (state.status == LatestNewsStatus.loaded &&
-                          state.latestNewsList != null) {
-                        return FlipCardSwiper(
-                          cardData: state.latestNewsList!,
-                          cardBuilder: (context, index, visibleIndex) {
-                            return NewsCard(
-                              article: state.latestNewsList![index],
-                            );
-                          },
-                          onCardCollectionAnimationComplete: (val) {},
-                        );
-                      } else if (state.status == LatestNewsStatus.error) {
-                        return SizedBox(
-                          width: double.infinity,
-                          height: 350,
-                          child: Text('Something_went_wrong'.tr()),
-                        );
-                      } else {
-                        return SizedBox(
-                          width: double.infinity,
-                          height: 350,
-                          child: Center(
-                            child: Lottie.asset(
-                              'assets/animations/search_animation.json',
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.contain,
-                            ),
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder:
+                                (context) => BlocProvider(
+                                  create:
+                                      (context) => SearchScreenBloc(
+                                        newsRepo: NewsRepo.initiate(),
+                                      ),
+                                  child: SearchScreen(),
+                                ),
                           ),
                         );
-                      }
-                    },
-                  ),
+                      },
+                    ),
+                  ],
                 ),
-                CategoriesGrid(),
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15),
+                child: BlocBuilder<LatestNewsBloc, LatestNewsState>(
+                  builder: (context, state) {
+                    if (state.status == LatestNewsStatus.loaded &&
+                        state.latestNewsList != null) {
+                      return FlipCardSwiper(
+                        cardData: state.latestNewsList!,
+                        cardBuilder: (context, index, visibleIndex) {
+                          return NewsCard(
+                            article: state.latestNewsList![index],
+                          );
+                        },
+                        onCardCollectionAnimationComplete: (val) {},
+                      );
+                    } else if (state.status == LatestNewsStatus.error) {
+                      return SizedBox(
+                        width: double.infinity,
+                        height: 350,
+                        child: Text('Something_went_wrong'.tr()),
+                      );
+                    } else {
+                      return SizedBox(
+                        width: double.infinity,
+                        height: 350,
+                        child: Center(
+                          child: Lottie.asset(
+                            'assets/animations/search_animation.json',
+                            width: 200,
+                            height: 200,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                ),
+              ),
+              CategoriesGrid(),
+            ],
           ),
         ),
       ),

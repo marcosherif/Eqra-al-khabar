@@ -13,6 +13,8 @@ class NewsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final uuid = Uuid();
+    final heroTag = uuid.v4();
     final imageUrl = article.urlToImage ?? '';
     final author = article.author ?? 'Unknown';
     final title = article.title ?? '';
@@ -29,7 +31,7 @@ class NewsCard extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder:
-                (_) => NewsDetailScreen(article: article, heroTag: Uuid().v4()),
+                (_) => NewsDetailScreen(article: article, heroTag: heroTag),
           ),
         );
       },

@@ -14,6 +14,8 @@ class NewsTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final uuid = Uuid();
+    final heroTag = uuid.v4();
     return InkWell(
       borderRadius: BorderRadius.circular(24),
       onTap: () {
@@ -21,10 +23,7 @@ class NewsTile extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder:
-                (_) => NewsDetailScreen(
-                  article: article,
-                  heroTag: Uuid().v4(),
-                ),
+                (_) => NewsDetailScreen(article: article, heroTag: heroTag),
           ),
         );
       },
