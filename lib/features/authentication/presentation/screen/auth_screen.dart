@@ -34,21 +34,24 @@ class _LoginPageState extends State<LoginPage> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextButton(
-              onPressed: () {
-                Locale locale;
-                if (context.locale == Locale('en')) {
-                  locale = Locale('ar');
-                } else {
-                  locale = Locale('en');
-                }
-                context.setLocale(locale);
-              },
-              child: Text(
-                context.locale == Locale('en') ? 'ع' : 'Eng',
-                style: Theme.of(
-                  context,
-                ).textTheme.titleSmall?.copyWith(fontSize: 18),
+            SizedBox(
+              width: 100,
+              child: TextButton(
+                onPressed: () {
+                  Locale locale;
+                  if (context.locale == Locale('en')) {
+                    locale = Locale('ar');
+                  } else {
+                    locale = Locale('en');
+                  }
+                  context.setLocale(locale);
+                },
+                child: Text(
+                  context.locale == Locale('en') ? 'ع' : 'Eng',
+                  style: Theme.of(
+                    context,
+                  ).textTheme.titleSmall?.copyWith(fontSize: 18),
+                ),
               ),
             ),
             Text('login').tr(),
