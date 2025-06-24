@@ -7,11 +7,13 @@ import 'app_settings_state.dart';
 class AppSettingsBloc extends HydratedBloc<AppSettingsEvent, AppSettingsState> {
   AppSettingsBloc()
     : super(const AppSettingsState(themeMode: ThemeMode.system)) {
-    on<ToggleTheme>((event, emit) {
-      final newTheme =
-          state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
-      emit(state.copyWith(themeMode: newTheme));
-    });
+    on<ToggleTheme>(_onToggleTheme);
+  }
+
+  void _onToggleTheme(ToggleTheme event, Emitter<AppSettingsState> emit) {
+    final newTheme =
+        state.themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    emit(state.copyWith(themeMode: newTheme));
   }
 
   @override
@@ -27,7 +29,7 @@ class AppSettingsBloc extends HydratedBloc<AppSettingsEvent, AppSettingsState> {
   }
 
   @override
-  Map<String, dynamic>? toJson(AppSettingsState state) {
+  Map<String, dynamic> toJson(AppSettingsState state) {
     return {'themeMode': state.themeMode.name};
   }
 }
